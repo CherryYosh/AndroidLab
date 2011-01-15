@@ -1,6 +1,18 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2011 James B Stevenson <j.brandon.s@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.cherryyosh.androidlab.cna;
 
@@ -15,9 +27,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 /**
- * NOTE: Right now really is just a nice wrapper class.
  *
- * @author Admin
+ * @author James B Stevenson <j.brandon.s@gmail.com>
  */
 public class Camera {
 
@@ -30,6 +41,8 @@ public class Camera {
     private static float _RotX = 0;
     private static float _RotY = 0;
     private static float _RotZ = 0;
+    private static float _TouchSensitivityX = 0.4f;
+    private static float _TouchSensitivityY = 0.4f;
     //Acceelerometer support
     private static float _YawnThreshhold = 0f;
     private static float _PitchThreshhold = 0.2f;
@@ -64,6 +77,14 @@ public class Camera {
 
 	Matrix.setIdentityM(_Projection, 0);
 	Matrix.frustumM(_Projection, 0, left, right, bottom, top, zNear, zFar);
+    }
+
+    /*
+     * This function takes the delta from a touch and uses it to rotate the camera
+     * needs a new name :P
+     */
+    public static void HandelTouch(float dx, float dy){
+        Rotate(dy * _TouchSensitivityY, dx * _TouchSensitivityX, 0);
     }
 
     public static void Translate(float x, float y, float z) {
@@ -128,7 +149,7 @@ public class Camera {
 		_ASupported = Boolean.FALSE;
 	    }
 	}
-	CNA.Toast("Accelerometer: " + _ASupported);
+	CNA.Logi("Accelerometer: " + _ASupported);
 	return _ASupported;
     }
 
