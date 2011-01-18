@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-     package="org.cherryyosh.androidlab.cna">
+     package="org.cherryyosh.androidlab.guitest">
     <application>
-         <activity android:screenOrientation="landscape" android:name=".CNA" android:label="CNA">
+         <activity android:screenOrientation="landscape" android:name=".GUITest" android:label="test lab">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

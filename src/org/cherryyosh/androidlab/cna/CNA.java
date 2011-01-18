@@ -73,31 +73,42 @@ public class CNA extends Activity {
     }
 }
 
-class CNASurfaceView extends GLSurfaceView {
+class CNASurfaceView extends GLSurfaceView{
     private float _OldX;
     private float _OldY;
+    private float _FirstX;
+    private float _FirstY;
+    private Render _r;
+
 
     public CNASurfaceView(Context context){
         super(context);
-        setRenderer(new Render());
+        _r = new Render();
+        setRenderer(_r);
     }
 
     @Override
     public boolean onTouchEvent(final MotionEvent ev) {
-
+        CNA.Logi("CNA: Ugh, should not be seeing this if not inside CNA. :(");
         switch(ev.getAction()){
             case MotionEvent.ACTION_DOWN:
-                 _OldX = ev.getX(0);
-                 _OldY = ev.getY(0);
+                 _FirstX = _OldX = ev.getX(0);
+                 _FirstY = _OldY = ev.getY(0);
                  break;
             case MotionEvent.ACTION_MOVE:
                 Camera.HandelTouch(ev.getX(0) - _OldX, ev.getY(0) - _OldY);
                  _OldX = ev.getX(0);
                  _OldY = ev.getY(0);
+                 return true;
+            case MotionEvent.ACTION_UP:
+                if(_r.gui.containsPoint(_FirstX, _FirstY)){
+                    //todo
+                }
                 break;
             default:
                 CNA.Logi("MotionEvent "+ev.getAction()+" raised but not handeled.");
                 break;
+
         }
 
      return true;

@@ -34,7 +34,7 @@ public class Render implements Renderer {
     private Square s;
     private Random r;
     private Texture t;
-    private GUI gui;
+    public GUI gui;
 
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 		gl.glClearColor(0.0f, 0.0f, 0.0f, 0.5f);
@@ -79,7 +79,7 @@ public class Render implements Renderer {
 			gl.glColor4f(r.nextFloat(), r.nextFloat(), r.nextFloat(), 1);
 			gl.glRotatef(22.5f * i, 0, 1, 0);
 			gl.glTranslatef(0, 0, -5f);
-			s.draw(gl);
+			//s.draw(gl);
 		    gl.glPopMatrix();
 		}
 		gl.glPopMatrix();
@@ -113,4 +113,8 @@ public class Render implements Renderer {
                 gl.glMatrixMode(GL10.GL_MODELVIEW);
 		gl.glLoadIdentity();
 	}
+
+    public void handelTouch(float fx, float fy, float cx, float cy){
+
+    }
 }

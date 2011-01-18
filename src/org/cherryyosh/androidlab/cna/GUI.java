@@ -49,4 +49,14 @@ public class GUI {
 	gl.glMatrixMode(gl.GL_MODELVIEW);
 	gl.glPopMatrix();
     }
+
+    /**
+     * Test if this gui has a object which contains the provited point.
+     *
+     * @param x the x coord (screen space) to test
+     * @param y the y coord (screen sapce) to test
+     */
+    public boolean containsPoint(float x, float y){
+        return false;
+    }
 }
